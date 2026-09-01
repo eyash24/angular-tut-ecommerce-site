@@ -29,7 +29,13 @@
 
     <div class="responsive-grid">
       @for (product of store.filteredProducts(); track product.id) {
-        <app-product-card [product]="product"> </app-product-card>
+        <app-product-card [product]="product">
+          <app-toggle-wishlist-button
+            class="!absolute z-10 top-3 right-3 w-10 h-10 rounded-full"
+            [product]="product"
+          >
+          </app-toggle-wishlist-button>
+        </app-product-card>
       }
     </div>
   </mat-sidenav-content>
