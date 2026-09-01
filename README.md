@@ -2,6 +2,11 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.22.
 
+
+This project refers the below youtube video:
+[Angular tutorial](https://youtube.com/playlist?list=PLHbz-DWIAPJA1eCE8oeM1Xq1icxGoqNw7&si=1DV3QVZjoGITMRVb)
+
+
 ## Development server
 
 To start a local development server, run:
