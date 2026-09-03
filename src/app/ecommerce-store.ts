@@ -5,13 +5,21 @@ import { patchState } from '@ngrx/signals';
 import { produce } from 'immer';
 import { Toaster } from './service/toaster';
 import { CartItem } from './models/carts';
-
+import { MatDialog } from '@angular/material/dialog';
+import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
+import { User, SignInParams, SignUpParams } from './models/user';
+import { Router } from '@angular/router';
+import { Order } from './models/order';
+import { withStorageSync } from '@angular-architects/ngrx-toolkit'
 
 export type EcommerceState = {
   products: Product[];
   category: string;
   wishlistItems: Product[];
   cartItems: CartItem[];
+  user: User | undefined;
+
+  loading: boolean;
 };
 
 export const EcommerceStore = signalStore(
@@ -473,7 +481,14 @@ export const EcommerceStore = signalStore(
     category: 'all',
     wishlistItems: [],
     cartItems: [],
+    user: undefined,
+    loading: false,
   } as EcommerceState),
+
+  withStorageSync({
+    key: 'modern-store',
+    select: ({ wishlistItems, cartItems, user }) => ({ wishlistItems, cartItems, user})
+  }),
 
   withComputed(({ category, products, wishlistItems, cartItems }) => ({
     filteredProducts: computed(() => {
@@ -488,7 +503,7 @@ export const EcommerceStore = signalStore(
 
   })),
 
-  withMethods((store, toaster=inject(Toaster)) => ({
+  withMethods((store, toaster=inject(Toaster), matDialog=inject(MatDialog), router=inject(Router)) => ({
     setCategory: signalMethod<string>((category: string) => {
       patchState(store, { category });
     }),
@@ -553,10 +568,105 @@ export const EcommerceStore = signalStore(
       })
 
       patchState(store, { cartItems: updatedCartItems, wishlistItems: [] })
-    }
+    },
 
+    moveToWishlist: (product: Product) => {
+      const updatedCartItems = store.cartItems().filter((p => p.product.id !== product.id))
+      const updatedWishlistItems = produce(store.wishlistItems(), (draft) => {
+        if (!draft.find(p => p.id === product.id)){
+          draft.push(product)
+        }
+      });
 
+      patchState(store, {cartItems: updatedCartItems, wishlistItems: updatedWishlistItems});
+    },
 
+    removeFromCart: (product: Product) => {
+      patchState(store, { cartItems: store.cartItems().filter((c) => c.product.id !== product.id)})
+    },
+
+    proceedToCheckout: () => {
+      if (!store.user()){
+        matDialog.open(SignInDialog, {
+          disableClose: true,
+          data: {
+            checkout: true
+          }
+        });
+        return;
+      }
+      router.navigate(['/checkout'])
+    },
+
+    placeOrder: async () => {
+      patchState(store, {loading: true})
+
+      const user = store.user()
+
+      if (!user) {
+        toaster.error('Please login before placing an order');
+        patchState(store, { loading: false})
+
+        return;
+      }
+
+      const order: Order = {
+        id: crypto.randomUUID(),
+        userId: user.id,
+        total: Math.round(store
+          .cartItems()
+          .reduce((acc, item) => acc + item.quantity * item.product.price, 0)),
+        items: store.cartItems(),
+        paymentStatus: 'success'
+
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      patchState(store, {loading: false, cartItems: []})
+      router.navigate(['order-success'])
+
+    },
+
+    signIn: ({email, password, checkout, dialogId}: SignInParams) => {
+      patchState(store, {
+        user: {
+          id: '1',
+          email,
+          name: 'John Doe',
+          imageUrl: 'https://images.pexels.com/photos/19453607/pexels-photo-19453607.jpeg',
+        }
+      })
+
+      matDialog.getDialogById(dialogId)?.close();
+
+      if (checkout) {
+        router.navigate(['/checkout'])
+      }
+
+    },
+
+    signOut: () => {
+      patchState(store, { user: undefined })
+    },
+
+    signUp: ({email, password, name, checkout, dialogId}: SignUpParams) => {
+      patchState(store, {
+       user: {
+        id: '1',
+        email,
+        name: name,
+        imageUrl: 'https://images.pexels.com/photos/19453607/pexels-photo-19453607.jpeg',
+       }
+      });
+
+      matDialog.getDialogById(dialogId)?.close();
+
+      if (checkout) {
+        router.navigate(['/checkout'])
+      }
+
+    },
 
 
 
