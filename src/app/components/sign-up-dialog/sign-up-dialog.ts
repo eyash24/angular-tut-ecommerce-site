@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatButton, MatIconButton } from '@angular/material/button';;
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogClose, MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { MatFormField, MatPrefix, MatSuffix } from '@angular/material/form-field';
+import { MatFormField, MatPrefix } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EcommerceStore } from '../../ecommerce-store';
@@ -16,7 +16,6 @@ import { SignInDialog } from '../sign-in-dialog/sign-in-dialog';
     MatDialogClose,
     MatFormField,
     MatPrefix,
-    MatSuffix,
     MatInput,
     MatButton,
     MatIconButton,
@@ -29,8 +28,8 @@ export class SignUpDialog {
   fb = inject(NonNullableFormBuilder);
   store = inject(EcommerceStore);
   dialogRef = inject(MatDialogRef);
-  data = inject<{checkout: boolean}>(MAT_DIALOG_DATA)
-  matDialog = inject(MatDialog)
+  data = inject<{checkout: boolean}>(MAT_DIALOG_DATA);
+  matDialog = inject(MatDialog);
 
   signUpForm = this.fb.group({
     name: ['John Doe', Validators.required],

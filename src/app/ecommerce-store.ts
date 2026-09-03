@@ -10,7 +10,7 @@ import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { User, SignInParams, SignUpParams } from './models/user';
 import { Router } from '@angular/router';
 import { Order } from './models/order';
-import { withStorageSync } from '@angular-architects/ngrx-toolkit'
+import { withStorageSync } from '@angular-architects/ngrx-toolkit';
 
 export type EcommerceState = {
   products: Product[];
@@ -19,7 +19,6 @@ export type EcommerceState = {
   cartItems: CartItem[];
   user: User | undefined;
   selectedProductId: string | undefined;
-
   loading: boolean;
 };
 
@@ -672,10 +671,7 @@ export const EcommerceStore = signalStore(
       if (checkout) {
         router.navigate(['/checkout'])
       }
-
     },
-
-
 
   })),
 );
