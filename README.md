@@ -6,6 +6,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 This project refers the below youtube video:
 [Angular tutorial](https://youtube.com/playlist?list=PLHbz-DWIAPJA1eCE8oeM1Xq1icxGoqNw7&si=1DV3QVZjoGITMRVb)
 
+Try the below for search bar functionality:
+[Angular Search Bar](https://youtu.be/gKXSPMDHNwg?si=SDfareRvLtzN-Dkq)
+
 
 ## Development server
 
