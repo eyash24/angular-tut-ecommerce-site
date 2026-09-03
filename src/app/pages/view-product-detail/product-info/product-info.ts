@@ -7,6 +7,7 @@ import { EcommerceStore } from '../../../ecommerce-store';
 import { MatIcon } from '@angular/material/icon';
 import { ToggleWishlistButton } from '../../../components/toggle-wishlist-button/toggle-wishlist-button';
 import { MatIconButton, MatAnchor } from "@angular/material/button";
+import { StarRating } from '../../../components/star-rating/star-rating';
 
 @Component({
   selector: 'app-product-info',
@@ -17,7 +18,7 @@ import { MatIconButton, MatAnchor } from "@angular/material/button";
     MatIcon,
     ToggleWishlistButton,
     MatIconButton,
-    MatAnchor
+    StarRating
 ],
   templateUrl: './product-info.html',
   styleUrl: './product-info.scss',
