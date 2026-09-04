@@ -8,6 +8,7 @@
   border-radius: 32px;
   display: flex;
   align-items: center;
+  position: relative;
 
   > input {
     font-size: 1.1rem;
@@ -16,4 +17,17 @@
     background: inherit;
     min-width: 352px;
   }
+
+  &.opened {
+    background: white;
+    border-radius: 32px 32px 0px 0px;
+
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 8px;
+  }
+
 }
