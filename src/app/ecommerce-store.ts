@@ -15,7 +15,6 @@ import { AddReviewParams, UserReview } from './models/user-review';
 import { productList } from './products';
 
 
-
 export type EcommerceState = {
   products: Product[];
   category: string;
