@@ -1,44 +1,43 @@
-<div class="p-8 min-w-[400px] flex flex-col">
-  <div class="flex justify-between">
+<div class="signup-container">
+  <div class="signup-header">
     <div>
-      <h2 class="text-xl font-medium mb-1">Sign Up</h2>
-      <p class="text-sm text-gray-500">Join us and start shopping today</p>
+      <h2 class="title">Sign Up</h2>
+      <p class="subtitle">Join us and start shopping today</p>
     </div>
-    <button tabindex="-1" matIconButton class="-mt-2 -mr-2" mat-dialog-close>
+    <button tabindex="-1" matIconButton class="close-button" mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
   </div>
 
-  <form [formGroup]="signUpForm" class="mt-6 flex flex-col" (ngSubmit)="signUp()">
-      <mat-form-field class="mb-4">
+  <form [formGroup]="signUpForm" class="signup-form" (ngSubmit)="signUp()">
+      <mat-form-field class="form-field">
         <input formControlName="name" matInput type="text" placeholder="Enter your name" />
         <mat-icon matPrefix>person</mat-icon>
       </mat-form-field>
 
-      <mat-form-field class="mb-4">
+      <mat-form-field class="form-field">
         <input formControlName="email" matInput type="email" placeholder="Enter your email" />
         <mat-icon matPrefix>email</mat-icon>
       </mat-form-field>
 
-      <mat-form-field class="mb-4">
+      <mat-form-field class="form-field">
         <input formControlName="password" matInput type="password" placeholder="Enter your password" />
         <mat-icon matPrefix>lock</mat-icon>
       </mat-form-field>
 
-      <mat-form-field class="mb-4">
+      <mat-form-field class="form-field">
         <input formControlName="confirmPassword" matInput type="password" placeholder="Confirm your password" />
         <mat-icon matPrefix>person</mat-icon>
       </mat-form-field>
 
-      <button type="submit" matButton="filled" class="w-full" >
+      <button type="submit" matButton="filled" class="submit-button" >
         <!-- {{ store.loading() ? 'Creating Account...' : 'Create Account' }} -->
         Create Account
       </button>
   </form>
-  <p class="text-sm text-gray-500 mt-2 text-center">
+
+  <p class="signin-prompt">
     Already have an account?
-    <a class="text-blue-600 cursor-pointer" (click)="openSignInDialog()">Sign In</a>
+    <a class="signin-link" (click)="openSignInDialog()">Sign In</a>
   </p>
-
-
 </div>

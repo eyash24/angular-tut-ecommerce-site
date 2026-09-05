@@ -1,0 +1,26 @@
+.reviews-panel-container {
+  .reviews-header {
+    display: flex;                  
+    justify-content: space-between; 
+    align-items: center;            
+    margin-bottom: 1rem;            
+  }
+
+  .reviews-title {
+    font-size: 1.25rem;             
+    line-height: 1.75rem;
+    font-weight: 600;               
+    margin: 0;
+  }
+
+  .write-review-wrapper {
+    margin-bottom: 1.5rem;          
+  }
+
+  .reviews-list {
+    display: flex;                  
+    flex-direction: column;         
+    gap: 1.5rem;                    
+    margin-top: 1.5rem;             
+  }
+}

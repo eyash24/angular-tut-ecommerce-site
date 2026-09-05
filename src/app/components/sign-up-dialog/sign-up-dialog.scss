@@ -1,0 +1,59 @@
+.signup-container {
+  padding: 2rem;               
+  min-width: 400px;            
+  display: flex;               
+  flex-direction: column;      
+
+  .signup-header {
+    display: flex;             
+    justify-content: space-between; 
+
+    .title {
+      font-size: 1.25rem;      
+      font-weight: 500;        
+      margin-bottom: 0.25rem;  
+    }
+
+    .subtitle {
+      font-size: 0.875rem;     
+      color: #6b7280;          
+      margin: 0;
+    }
+
+    .close-button {
+      margin-top: -0.5rem;     
+      margin-right: -0.5rem;   
+    }
+  }
+
+  .signup-form {
+    margin-top: 1.5rem;        
+    display: flex;             
+    flex-direction: column;    
+
+    .form-field {
+      margin-bottom: 1rem;     
+    }
+
+    .submit-button {
+      width: 100%;             
+    }
+  }
+
+  .signin-prompt {
+    font-size: 0.875rem;       
+    color: #6b7280;            
+    margin-top: 0.5rem;        
+    text-align: center;        
+
+    .signin-link {
+      color: #2563eb;          
+      cursor: pointer;         
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

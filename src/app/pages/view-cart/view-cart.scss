@@ -1,0 +1,45 @@
+.cart-page-container {
+  margin: 0 auto;              
+  max-width: 1200px;           
+  padding: 1.5rem 0;           
+
+  .back-navigation {
+    display: block;
+    margin-bottom: 1.5rem;     
+  }
+
+  .page-title {
+    font-size: 1.875rem;       
+    line-height: 2.25rem;
+    font-weight: 800;          
+    margin-bottom: 1rem;       
+  }
+
+  .wishlist-teaser {
+    display: block;            
+    margin-bottom: 1.5rem;     
+  }
+
+  .cart-layout-grid {
+    display: grid;             
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;               
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .cart-items-column {
+    @media (min-width: 1024px) {
+      grid-column: span 2 / span 2;
+    }
+  }
+
+  .checkout-button {
+    width: 100%;               
+    margin-top: 1.5rem;        
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}

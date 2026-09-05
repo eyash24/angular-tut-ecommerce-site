@@ -1,18 +1,18 @@
-<div appViewPanel>
-  <div class="flex items-start gap-4">
+<div appViewPanel class="review-item-container">
+  <div class="review-layout">
     <img
       [src]="review().userImageUrl"
       [alt]="review().userName"
-      class="w-10 h-10 rounded-full"
+      class="user-avatar"
     />
-    <div>
-      <div class="text-lg font-semibold">{{ review().userName }}</div>
-      <div class="flex items-center mb-1">
+    <div class="review-content">
+      <div class="user-name">{{ review().userName }}</div>
+      <div class="review-meta">
         <app-star-rating [rating]="review().rating"></app-star-rating>
-        <div class="text-sm text-gray-500">{{ review().reviewDate | date: 'MMM d, yyyy' }}</div>
+        <div class="review-date">{{ review().reviewDate | date: 'MMM d, yyyy' }}</div>
       </div>
-      <div class="text-base font-semibold mb-1">{{ review().title }}</div>
-      <div class="text-sm text-gray-500">{{ review().comment }}</div>
+      <div class="review-title">{{ review().title }}</div>
+      <div class="review-comment">{{ review().comment }}</div>
     </div>
   </div>
 </div>

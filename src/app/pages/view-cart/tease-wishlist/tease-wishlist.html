@@ -1,21 +1,19 @@
-<div appViewPanel class="flex items-center justify-between">
-  <div class="flex items-center gap-3">
-    <mat-icon class="!text-red-500">favorite_border</mat-icon>
-    <div>
-      <h2 class="text-xl font-bold">Wishlist ({{ store.wishlistCount() }})</h2>
-      <p class="text-gray-500 text-sm">You have {{ store.wishlistCount() }} items saved for later</p>
+<div appViewPanel class="wishlist-teaser-panel">
+  <div class="wishlist-info-group">
+    <mat-icon class="wishlist-icon">favorite_border</mat-icon>
+    <div class="wishlist-text">
+      <h2 class="wishlist-title">Wishlist ({{ store.wishlistCount() }})</h2>
+      <p class="wishlist-subtitle">You have {{ store.wishlistCount() }} items saved for later</p>
     </div>
-
   </div>
 
-  <div class="flex items-center gap-3">
+  <div class="wishlist-actions-group">
     <button matButton routerLink="/wishlists">View All</button>
-    <button matButton="filled" class="flex items-center gap-2"
+    <button matButton="filled" class="add-all-btn"
       (click)="store.addAllWishlistToCart()"
     >
       <mat-icon>shopping_cart</mat-icon>
       Add All to Cart
     </button>
   </div>
-
 </div>

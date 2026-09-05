@@ -1,16 +1,16 @@
-<div class="flex items-center">
-  <div class="flex items-center mr-2">
+<div class="star-rating-wrapper">
+  <div class="stars-container">
     @for (star of starArray(); track $index) {
       <mat-icon
-        class="!text-lg"
+        class="star-icon"
         [inline]="true"
-        [class]="star ? '!text-yellow-400' : '!text-gray-300'"
+        [class]="star ? 'star-filled' : 'star-empty'"
       >
       star
       </mat-icon>
     }
   </div>
-  <span class="text-sm text-gray-500">
+  <span class="rating-text">
     <ng-content></ng-content>
   </span>
 </div>

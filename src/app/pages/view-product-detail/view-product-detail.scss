@@ -1,0 +1,40 @@
+.product-detail-container {
+  margin: 0 auto;               
+  max-width: 1200px;            
+  padding: 1.5rem 0;            
+  
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .back-navigation {
+    display: block;
+    margin-bottom: 1.5rem;      
+  }
+
+  .product-layout-wrapper {
+    display: flex;              
+    flex-direction: column;     
+    gap: 2rem;                  
+    margin-bottom: 2rem;        
+
+    @media (min-width: 768px) {
+      flex-direction: row;      
+    }
+  }
+
+  .product-detail-image {
+    width: 100%;                
+    max-width: 500px;           
+    height: auto;               
+    object-fit: cover;          
+    border-radius: 0.5rem;      
+
+    @media (min-width: 768px) {
+      height: 550px;            
+    }
+  }
+
+  .product-info-wrapper {
+    flex: 1 1 0%;               
+  }
+}

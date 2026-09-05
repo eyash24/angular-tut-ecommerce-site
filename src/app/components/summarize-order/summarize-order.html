@@ -1,27 +1,26 @@
-<div appViewPanel>
-  <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+<div appViewPanel class="order-summary-container">
+  <h2 class="summary-title">Order Summary</h2>
 
-  <div class="space-y-2 pb-4">
+  <div class="checkout-items-wrapper">
     <ng-content select="[checkoutItems]"></ng-content>
   </div>
 
-  <div class="space-y-3 text-lg pt-4 border-t">
-    <div class="flex justify-between">
+  <div class="summary-totals-section">
+    <div class="summary-row">
       <span>Subtotal</span>
       <span>$ {{ subtotal() }}</span>
     </div>
 
-    <div class="flex justify-between">
+    <div class="summary-row">
       <span>Tax</span>
       <span>$ {{ tax() }}</span>
     </div>
 
-    <div class="flex justify-between border-t pt-3 font-bold text-lg">
+    <div class="summary-row total-row">
       <span>Total</span>
       <span>$ {{ total() }}</span>
     </div>
 
     <ng-content select="[actionButtons]"></ng-content>
-
   </div>
 </div>

@@ -1,0 +1,16 @@
+.store-toolbar {
+  width: 100%;
+  padding: 0.5rem 0;
+
+  .toolbar-container {
+    max-width: 1200px;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  span {
+    margin-left: 1rem;
+  }
+}

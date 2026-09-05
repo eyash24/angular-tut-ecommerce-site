@@ -1,0 +1,14 @@
+.cart-items-panel {
+  .panel-title {
+    font-size: 1.5rem;       
+    line-height: 2rem;
+    font-weight: 700;        
+    margin-bottom: 1rem;     
+  }
+
+  .items-list {
+    display: flex;           
+    flex-direction: column;  
+    gap: 1.5rem;             
+  }
+}

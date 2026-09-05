@@ -1,11 +1,9 @@
-<div appViewPanel>
-  <h2 class="text-2xl font-bold mb-4">Cart Items ({{store.cartCount()}})</h2>
-  <div class="flex flex-col gap-6">
+<div appViewPanel class="cart-items-panel">
+  <h2 class="panel-title">Cart Items ({{store.cartCount()}})</h2>
 
+  <div class="items-list">
     @for (item of store.cartItems(); track item.product.id) {
       <app-show-cart-item [item]="item"></app-show-cart-item>
     }
-
   </div>
-
 </div>

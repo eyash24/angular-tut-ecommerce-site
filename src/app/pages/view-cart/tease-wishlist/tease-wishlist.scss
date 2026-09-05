@@ -1,0 +1,44 @@
+.wishlist-teaser-panel {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .wishlist-info-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .wishlist-icon {
+    color: #000 !important;
+  }
+
+  .wishlist-text {
+    .wishlist-title {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .wishlist-subtitle {
+      color: #6b7280;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      margin: 0;
+    }
+  }
+
+  .wishlist-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .add-all-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}

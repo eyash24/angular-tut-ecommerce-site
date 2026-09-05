@@ -1,18 +1,23 @@
-<div class="mx-auto max-w-[1200px] py-6">
-  <app-back-button class="mb-6" navigateTo="/products/all">Continue Shopping</app-back-button>
-  <h1 class="text-3xl font-extrabold mb-4">Shopping Cart</h1>
+<div class="cart-page-container">
+  <app-back-button class="back-navigation" navigateTo="/products/all">
+    Continue Shopping
+  </app-back-button>
 
-  <app-tease-wishlist class="mb-6 block"></app-tease-wishlist>
+  <h1 class="page-title">Shopping Cart</h1>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <div class="lg:col-span-2">
-      <app-list-cart-items ></app-list-cart-items>
+  <app-tease-wishlist class="wishlist-teaser"></app-tease-wishlist>
+
+  <div class="cart-layout-grid">
+    <div class="cart-items-column">
+      <app-list-cart-items></app-list-cart-items>
     </div>
 
-    <div>
+    <div class="summary-column">
       <app-summarize-order>
         <ng-container actionButtons>
-          <button matButton="filled" class="w-full mt-6 py-6" (click)="store.proceedToCheckout()">Proceed to Checkout</button>
+          <button matButton="filled" class="checkout-button" (click)="store.proceedToCheckout()">
+            Proceed to Checkout
+          </button>
         </ng-container>
       </app-summarize-order>
     </div>

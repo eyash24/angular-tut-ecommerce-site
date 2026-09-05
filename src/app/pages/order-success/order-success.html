@@ -1,20 +1,18 @@
-<div class="flex justify-center items-center h-[calc(100vh-64px)] py-6">
-  <div
-    class="flex flex-col items-center justify-center text-center bg-white rounded-xl shadow p-8 gap-6"
-  >
+<div class="success-page-container">
+  <div class="success-card">
+    <mat-icon class="success-icon">check_circle</mat-icon>
+    <h2 class="success-title">Order Successful!</h2>
 
-  <mat-icon class="!text-green-500 !h-[56px] !w-[56px] !text-[56px]">check_circle</mat-icon>
-  <h2 class="font-semibold text-green-600 text-2xl font-bold">Order Successful!</h2>
-  <p class="text-base">
-    Thank you for your purchase! Your order has been confirmed and will be shipped soon.
-  </p>
-  <p class="text-gray-600">
-    You will recieve an email confirmation shortly with your order details and tracking information.
-  </p>
-  <button matButton="filled" color="primary" class="w-full mac-w-xs mt-2" routerLink="/">
-    Continue Shopping
-  </button>
+    <p class="success-message">
+      Thank you for your purchase! Your order has been confirmed and will be shipped soon.
+    </p>
 
+    <p class="success-note">
+      You will receive an email confirmation shortly with your order details and tracking information.
+    </p>
+
+    <button matButton="filled" color="primary" class="continue-shopping-btn" routerLink="/">
+      Continue Shopping
+    </button>
   </div>
-
 </div>

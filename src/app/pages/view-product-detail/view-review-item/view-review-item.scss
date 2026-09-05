@@ -1,0 +1,50 @@
+.review-item-container {
+  .review-layout {
+    display: flex;                
+    align-items: flex-start;      
+    gap: 1rem;                    
+  }
+
+  .user-avatar {
+    width: 2.5rem;                
+    height: 2.5rem;               
+    border-radius: 9999px;        
+    object-fit: cover;
+  }
+
+  .review-content {
+    flex: 1 1 0%;
+  }
+
+  .user-name {
+    font-size: 1.125rem;          
+    line-height: 1.75rem;
+    font-weight: 600;             
+  }
+
+  .review-meta {
+    display: flex;                
+    align-items: center;          
+    gap: 0.75rem;                 
+    margin-bottom: 0.25rem;       
+  }
+
+  .review-date {
+    font-size: 0.875rem;          
+    line-height: 1.25rem;
+    color: #6b7280;               
+  }
+
+  .review-title {
+    font-size: 1rem;              
+    line-height: 1.5rem;
+    font-weight: 600;             
+    margin-bottom: 0.25rem;       
+  }
+
+  .review-comment {
+    font-size: 0.875rem;          
+    line-height: 1.25rem;
+    color: #6b7280;               
+  }
+}

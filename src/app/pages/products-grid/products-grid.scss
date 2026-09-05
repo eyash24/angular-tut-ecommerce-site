@@ -1,1 +1,72 @@
 
+.products-layout-container {
+  height: 100%; 
+
+  .sidebar-content {
+    padding: 1.5rem;             
+  }
+
+  .sidebar-title {
+    font-size: 1.125rem;         
+    line-height: 1.75rem;
+    color: #111827;              
+    margin: 0;
+  }
+
+  .category-item {
+    margin: 0.5rem 0;            
+  }
+
+  .category-name {
+    font-weight: 500;            
+
+    &.active-text {
+      color: #ffffff !important; 
+    }
+  }
+
+  .main-content {
+    background-color: #f3f4f6;   
+    padding: 1.5rem;             
+    height: 100%;                
+  }
+
+  .category-header {
+    font-size: 1.5rem;           
+    line-height: 2rem;
+    font-weight: 700;            
+    color: #111827;              
+    margin-bottom: 0.25rem;      
+  }
+
+  .product-count {
+    font-size: 1rem;             
+    line-height: 1.5rem;
+    color: #4b5563;              
+    margin-bottom: 1.5rem;       
+  }
+
+
+  .wishlist-overlay-btn {
+    position: absolute !important; 
+    z-index: 10;                 
+    top: 0.75rem;                
+    right: 0.75rem;              
+    width: 2.5rem;               
+    height: 2.5rem;              
+    border-radius: 0.5rem;       
+    background-color: #ffffff !important; 
+    border: 0;                   
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+    display: flex;               
+    align-items: center;         
+    justify-content: center;     
+    cursor: pointer;             
+    transition: all 200ms ease;  
+
+    &:hover {
+      transform: scale(1.1);     
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+    }
+  }
+}

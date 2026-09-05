@@ -1,0 +1,51 @@
+.cart-item-row {
+  display: grid;                 
+  grid-template-columns: 3fr 1fr 1fr; 
+
+  .item-details {
+    display: flex;               
+    gap: 0.75rem;                
+  }
+
+  .image-wrapper {
+    display: flex;               
+    align-items: center;         
+  }
+
+  .product-image {
+    width: 6rem;                 
+    height: 6rem;                
+    border-radius: 0.5rem;       
+    object-fit: cover;           
+  }
+
+  .item-info {
+    .item-name {
+      color: #111827;            
+      font-size: 1.125rem;       
+      font-weight: 600;          
+    }
+
+    .item-price {
+      color: #4b5563;            
+      font-size: 1.125rem;       
+    }
+  }
+
+  .item-actions-column {
+    display: flex;               
+    flex-direction: column;      
+    align-items: flex-end;       
+  }
+
+  .item-total {
+    text-align: right;           
+    font-weight: 600;            
+    font-size: 1.125rem;         
+  }
+
+  .action-buttons {
+    display: flex;               
+    margin-inline-end: -0.75rem;
+  }
+}

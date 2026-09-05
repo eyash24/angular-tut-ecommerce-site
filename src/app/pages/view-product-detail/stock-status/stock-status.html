@@ -1,16 +1,12 @@
 @if (inStock()) {
-  <div
-    class="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-3 bg-white w-full"
-  >
-    <mat-icon class="small">check_circle</mat-icon>
-    <span class="text-xs text-gray-800">In stock and ready to ship</span>
+  <div class="stock-indicator in-stock">
+    <mat-icon class="status-icon">check_circle</mat-icon>
+    <span class="status-text">In stock and ready to ship</span>
   </div>
 } @else {
-  <div
-    class="flex items-center gap-2 border border-red-700 rounded-lg px-3 py-3 bg-white w-full danger"
-  >
-    <mat-icon class="small">warning</mat-icon>
-    <span class="text-xs">
+  <div class="stock-indicator out-of-stock danger">
+    <mat-icon class="status-icon">warning</mat-icon>
+    <span class="status-text">
       This is currently out of stock. Add it to your wishlist to be notified when it's available again.
     </span>
   </div>
