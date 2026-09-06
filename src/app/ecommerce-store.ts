@@ -112,15 +112,10 @@ export const EcommerceStore = signalStore(
       let skip = 0;
       const limit = 10;
 
-      while (true) {
-        const page = await firstValueFrom(wishlistService.getItems(skip, limit));
-        products.push(...page.products);
-        if (!page.has_more) {
-          break;
-        }
-        skip += limit;
-      }
+      const page = await firstValueFrom(wishlistService.getItems(skip, limit));
+      products.push(...page.products);
 
+      skip += limit;
       patchState(store, { wishlistItems: products });
     };
 
@@ -210,37 +205,31 @@ export const EcommerceStore = signalStore(
       let skip = 0;
       const limit = 10;
 
-      while (true) {
-        const page = await firstValueFrom(productService.getProductReviews(productId, limit, skip));
+      const page = await firstValueFrom(productService.getProductReviews(productId, limit, skip));
 
-        const pageReviews = await Promise.all(page.reviews.map(async (review) => {
-          const mappedReview: UserReview = {
-            id: review.id,
-            productId: review.product_id,
-            userId: review.user_id,
-            userName: 'Customer',
-            userImageUrl: 'https://i.pravatar.cc/150?img=1',
-            rating: review.rating,
-            title: review.title,
-            comment: review.comment,
-            reviewDate: new Date(review.created_at),
-          };
+      const pageReviews = await Promise.all(page.reviews.map(async (review) => {
+        const mappedReview: UserReview = {
+          id: review.id,
+          productId: review.product_id,
+          userId: review.user_id,
+          userName: 'Customer',
+          userImageUrl: 'https://via.placeholder.com/150',
+          rating: review.rating,
+          title: review.title,
+          comment: review.comment,
+          reviewDate: new Date(review.created_at),
+        };
 
-          try {
-            const user = await firstValueFrom(authService.getPublicUser(review.user_id));
-            return { ...mappedReview, userName: user.username, userImageUrl: user.image_url };
-          } catch {
-            return mappedReview;
-          }
-        }));
-
-        reviews.push(...pageReviews);
-
-        if (!page.has_more) {
-          break;
+        try {
+          const user = await firstValueFrom(authService.getPublicUser(review.user_id));
+          return { ...mappedReview, userName: user.username, userImageUrl: user.image_url };
+        } catch {
+          return mappedReview;
         }
-        skip += limit;
-      }
+      }));
+
+      reviews.push(...pageReviews);
+      skip += limit;
 
       patchState(store, { productReviews: reviews });
     };
@@ -280,11 +269,11 @@ export const EcommerceStore = signalStore(
 
           patchState(store, { selectedProduct: product, loading: false });
 
-          try {
-            await loadReviews(productId);
-          } catch {
-            patchState(store, { productReviews: [] });
-          }
+          // try {
+          //   await loadReviews(productId);
+          // } catch {
+          //   patchState(store, { productReviews: [] });
+          // }
         } catch (error) {
           patchState(store, { selectedProduct: undefined, loading: false });
           toaster.error(apiMessage(error, 'Unable to load product'));
