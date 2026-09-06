@@ -15,9 +15,9 @@
       {{ product().description }}
     </p>
 
-    <!-- <app-star-rating class="product-rating" [rating]="product().rating">
-      ({{ product().reviewCount }})
-    </app-star-rating> -->
+  <app-star-rating class="product-rating" [rating]="store.averageRating()">
+    {{ store.averageRating() }} ({{ store.productReviews().length }} reviews)
+  </app-star-rating>
 
     <div class="product-stock-status">
       {{ product().inStock ? 'In Stock' : 'Out of Stock' }}

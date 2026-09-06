@@ -269,11 +269,11 @@ export const EcommerceStore = signalStore(
 
           patchState(store, { selectedProduct: product, loading: false });
 
-          // try {
-          //   await loadReviews(productId);
-          // } catch {
-          //   patchState(store, { productReviews: [] });
-          // }
+          try {
+            await loadReviews(productId);
+          } catch {
+            patchState(store, { productReviews: [] });
+          }
         } catch (error) {
           patchState(store, { selectedProduct: undefined, loading: false });
           toaster.error(apiMessage(error, 'Unable to load product'));
