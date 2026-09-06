@@ -4,29 +4,29 @@
     Shipping Information
    </h2>
 
-   <form class="shipping-form">
+   <form class="shipping-form" [formGroup]="shippingForm">
     <mat-form-field>
-      <input type="text" placeholder="First Name" matInput />
+      <input type="text" placeholder="First Name" matInput formControlName="first_name" />
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" placeholder="Last Name" matInput />
+      <input type="text" placeholder="Last Name" matInput formControlName="last_name" />
     </mat-form-field>
 
     <mat-form-field class="full-width-field">
-      <textarea type="text" placeholder="Address" matInput></textarea>
+      <textarea placeholder="Address" matInput formControlName="address"></textarea>
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" placeholder="City" matInput />
+      <input type="text" placeholder="City" matInput formControlName="city" />
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" placeholder="State" matInput />
+      <input type="text" placeholder="State" matInput formControlName="state" />
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" placeholder="Zip" matInput />
+      <input type="text" placeholder="Zip" matInput formControlName="zip" />
     </mat-form-field>
    </form>
 </div>

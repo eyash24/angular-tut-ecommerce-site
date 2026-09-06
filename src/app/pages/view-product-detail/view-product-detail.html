@@ -5,7 +5,7 @@
 
   @if (store.selectedProduct(); as product) {
     <div class="product-layout-wrapper">
-      <img [src]="product.imageUrl" [alt]="product.name" class="product-detail-image"
+      <img [src]="product.image_url" [alt]="product.name" class="product-detail-image"
         [style.view-transition-name]="'product-image-' + product.id"
       >
 
@@ -14,6 +14,6 @@
       </div>
     </div>
 
-    <app-view-review [product]="product"></app-view-review>
+    <app-view-review></app-view-review>
   }
 </div>

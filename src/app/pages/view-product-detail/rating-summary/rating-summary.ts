@@ -1,6 +1,6 @@
 import { StarRating } from '../../../components/star-rating/star-rating';
-import { Product } from './../../../models/products';
-import { Component, input, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { EcommerceStore } from '../../../ecommerce-store';
 
 @Component({
   selector: 'app-rating-summary',
@@ -9,13 +9,12 @@ import { Component, input, computed } from '@angular/core';
   styleUrl: './rating-summary.scss',
 })
 export class RatingSummary {
-  product = input.required<Product>();
+  store = inject(EcommerceStore);
 
-  totalReviews = computed(() => this.product().reviews.length);
+  totalReviews = computed(() => this.store.productReviews().length);
 
   ratingBreakdown = computed(() => {
-
-    const reviews = this.product().reviews;
+    const reviews = this.store.productReviews();
     const total = reviews.length;
 
     if (total === 0)
@@ -25,7 +24,7 @@ export class RatingSummary {
         percentage:0,
       }))
 
-    const counts = [5,4,3,2,1].map((stars) => {
+    return [5,4,3,2,1].map((stars) => {
       const count = reviews.filter((review) => review.rating === stars).length;
       return {
         stars,
@@ -33,8 +32,5 @@ export class RatingSummary {
         percentage: (count / total) *100,
       }
     });
-
-    return counts;
   })
-
 }

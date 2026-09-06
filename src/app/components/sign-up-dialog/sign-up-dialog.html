@@ -11,7 +11,7 @@
 
   <form [formGroup]="signUpForm" class="signup-form" (ngSubmit)="signUp()">
       <mat-form-field class="form-field">
-        <input formControlName="name" matInput type="text" placeholder="Enter your name" />
+        <input formControlName="name" matInput type="text" placeholder="Enter your username" />
         <mat-icon matPrefix>person</mat-icon>
       </mat-form-field>
 
@@ -30,9 +30,9 @@
         <mat-icon matPrefix>person</mat-icon>
       </mat-form-field>
 
-      <button type="submit" matButton="filled" class="submit-button" >
+      <button type="submit" matButton="filled" class="submit-button" [disabled]="store.loading()">
         <!-- {{ store.loading() ? 'Creating Account...' : 'Create Account' }} -->
-        Create Account
+        {{ store.loading() ? 'Creating Account...' : 'Create Account' }}
       </button>
   </form>
 

@@ -5,7 +5,7 @@ import { ShowCartItem } from '../../show-cart-item/show-cart-item';
 
 @Component({
   selector: 'app-list-cart-items',
-  imports: [ViewPanel, ShowCartItem, ShowCartItem],
+  imports: [ViewPanel, ShowCartItem],
   templateUrl: './list-cart-items.html',
   styleUrl: './list-cart-items.scss',
 })

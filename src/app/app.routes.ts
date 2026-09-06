@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -14,7 +13,6 @@ export const routes: Routes = [
   {
     path: 'product/:productId',
     loadComponent: () => import('./pages/view-product-detail/view-product-detail')
-
   },
   {
     path: 'wishlists',
@@ -32,7 +30,4 @@ export const routes: Routes = [
     path: 'order-success',
     loadComponent: () => import('./pages/order-success/order-success')
   }
-
-
 ];
-

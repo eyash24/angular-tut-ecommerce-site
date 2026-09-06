@@ -32,10 +32,10 @@ export class SignUpDialog {
   matDialog = inject(MatDialog);
 
   signUpForm = this.fb.group({
-    name: ['John Doe', Validators.required],
-    email: ['john@test.com', Validators.required],
-    password: ['test123', Validators.required],
-    confirmPassword: ['test123', Validators.required]
+    name: ['', [Validators.required, Validators.minLength(1)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(8)]]
   })
 
   signUp() {

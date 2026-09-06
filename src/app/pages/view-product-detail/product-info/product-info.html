@@ -3,8 +3,8 @@
 </div>
 <h1 class="product-name">{{ product().name }}</h1>
 
-<app-star-rating class="product-rating" [rating]="product().rating">
-  {{ product().rating }} ({{ product().reviewCount}} reviews)
+<app-star-rating class="product-rating" [rating]="store.averageRating()">
+  {{ store.averageRating() }} ({{ store.productReviews().length }} reviews)
 </app-star-rating>
 
 <p class="product-price">$ {{ product().price }}</p>

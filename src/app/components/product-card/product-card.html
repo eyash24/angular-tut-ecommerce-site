@@ -1,5 +1,5 @@
 <div class="product-card">
-  <img [src]="product().imageUrl" alt="product image" class="product-image"
+  <img [src]="product().image_url" alt="product image" class="product-image"
     [routerLink]="['/product', product().id]"
     [style.view-transition-name]="'product-image-' + product().id"
   />
@@ -15,9 +15,9 @@
       {{ product().description }}
     </p>
 
-    <app-star-rating class="product-rating" [rating]="product().rating">
+    <!-- <app-star-rating class="product-rating" [rating]="product().rating">
       ({{ product().reviewCount }})
-    </app-star-rating>
+    </app-star-rating> -->
 
     <div class="product-stock-status">
       {{ product().inStock ? 'In Stock' : 'Out of Stock' }}

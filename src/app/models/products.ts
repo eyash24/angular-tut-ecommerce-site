@@ -1,14 +1,30 @@
-import { UserReview } from "./user-review";
-
 export type Product = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
-  imageUrl: string;
-  rating: number;
-  reviewCount: number;
+  image_url: string;
+  rating?: number;
+  reviewCount?: number;
   inStock: boolean;
+  quantity: number;
   category: string;
-  reviews: UserReview[];
-}
+  created_at: string;
+  user_id: number;
+};
+
+export type ProductCategoryListResponse = {
+  categories: string[];
+};
+
+export type PaginatedProductResponse = {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+  has_more: boolean;
+};
+
+export type ProductStatus = {
+  inStock: boolean;
+};

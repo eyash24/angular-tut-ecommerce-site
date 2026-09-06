@@ -4,7 +4,10 @@
     Payment Options
   </h2>
   <div>
-    <mat-radio-group [value]="'stripe'">
+    <mat-radio-group
+      [value]="checkoutService.paymentMode()"
+      (change)="checkoutService.paymentMode.set($event.value)"
+    >
         <mat-radio-button value="stripe">
           <img src="stripe-logo.png" alt="Stripe" class="payment-logo">
         </mat-radio-button>

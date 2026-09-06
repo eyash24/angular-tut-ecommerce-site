@@ -13,7 +13,5 @@ import { EcommerceStore } from '../../ecommerce-store';
   styleUrl: './view-cart.scss',
 })
 export default class ViewCart {
-
   store = inject(EcommerceStore)
-  
 }

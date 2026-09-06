@@ -26,7 +26,7 @@ export class SearchBar {
     this.searchBarService.search(searchTerm);
   }
 
-  clearSearch() {
+  clearSearchfromBar() {
     this.searchBarService.clearSearch()
   }
 }

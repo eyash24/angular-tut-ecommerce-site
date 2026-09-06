@@ -24,11 +24,13 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="main-content">
-    <h1 class="category-header">{{ category() | titlecase }}</h1>
-    <p class="product-count">{{ store.filteredProducts().length }} products found</p>
+    <h1 class="category-header">
+      {{ searchBarService.searchTerm() || (category() | titlecase) }}
+    </h1>
+    <p class="product-count">{{ productList().length }} products found</p>
 
     <div class="responsive-grid">
-      @for (product of store.filteredProducts(); track product.id) {
+      @for (product of productList(); track product.id) {
         <app-product-card [product]="product">
           <app-toggle-wishlist-button
             class="wishlist-overlay-btn"

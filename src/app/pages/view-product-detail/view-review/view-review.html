@@ -12,10 +12,10 @@
     </div>
   }
 
-  <app-rating-summary [product]="product()"></app-rating-summary>
+  <app-rating-summary></app-rating-summary>
 
   <div class="reviews-list">
-    @for (review of sortedReviews(); track review.id){
+    @for (review of store.productReviews(); track review.id){
       <app-view-review-item [review]="review"></app-view-review-item>
     }
   </div>

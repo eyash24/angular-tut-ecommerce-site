@@ -6,7 +6,7 @@ import { QtySelector } from '../../../components/qty-selector/qty-selector';
 import { EcommerceStore } from '../../../ecommerce-store';
 import { MatIcon } from '@angular/material/icon';
 import { ToggleWishlistButton } from '../../../components/toggle-wishlist-button/toggle-wishlist-button';
-import { MatIconButton, MatAnchor } from "@angular/material/button";
+import { MatIconButton, MatButton } from "@angular/material/button";
 import { StarRating } from '../../../components/star-rating/star-rating';
 
 @Component({
@@ -18,6 +18,7 @@ import { StarRating } from '../../../components/star-rating/star-rating';
     MatIcon,
     ToggleWishlistButton,
     MatIconButton,
+    MatButton,
     StarRating
 ],
   templateUrl: './product-info.html',

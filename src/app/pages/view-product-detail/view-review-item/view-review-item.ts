@@ -4,7 +4,6 @@ import { ViewPanel } from "../../../directives/view-panel";
 import { StarRating } from '../../../components/star-rating/star-rating';
 import { DatePipe } from '@angular/common';
 
-
 @Component({
   selector: 'app-view-review-item',
   imports: [ViewPanel, StarRating, DatePipe],

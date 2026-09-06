@@ -37,7 +37,9 @@
        </button>
     </mat-form-field>
 
-    <button type="submit" matButton="filled" class="submit-button">Sign In</button>
+    <button type="submit" matButton="filled" class="submit-button" [disabled]="store.loading()">
+      {{ store.loading() ? 'Signing In...' : 'Sign In' }}
+    </button>
 
   </form>
 
