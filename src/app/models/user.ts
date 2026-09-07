@@ -21,6 +21,7 @@ export type SignUpParams = {
   name: string;
   email: string;
   password: string;
+  imageUrl: string;
   checkout?: boolean;
   dialogId: string;
 };

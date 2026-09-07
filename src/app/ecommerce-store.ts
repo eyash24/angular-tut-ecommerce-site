@@ -435,10 +435,10 @@ export const EcommerceStore = signalStore(
         patchState(store, { user: undefined, cartItems: [], wishlistItems: [] });
       },
 
-      async signUp({ email, password, name, checkout, dialogId }: SignUpParams) {
+      async signUp({ email, password, name, imageUrl, checkout, dialogId }: SignUpParams) {
         patchState(store, { loading: true });
         try {
-          await firstValueFrom(authService.signUp(name, email, password));
+          await firstValueFrom(authService.signUp(name, email, password, imageUrl));
           await firstValueFrom(authService.signIn(email, password));
           const user = await firstValueFrom(authService.getMe());
           patchState(store, { user: mapApiUser(user), loading: false });

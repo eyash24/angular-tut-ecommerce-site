@@ -30,6 +30,11 @@
         <mat-icon matPrefix>person</mat-icon>
       </mat-form-field>
 
+      <mat-form-field class="form-field">
+        <input formControlName="imageUrl" matInput type="text" placeholder="Enter profile image url" />
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+
       <button type="submit" matButton="filled" class="submit-button" [disabled]="store.loading()">
         <!-- {{ store.loading() ? 'Creating Account...' : 'Create Account' }} -->
         {{ store.loading() ? 'Creating Account...' : 'Create Account' }}

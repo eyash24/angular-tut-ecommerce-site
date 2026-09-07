@@ -42,12 +42,12 @@ export class AuthService {
       );
   }
 
-  signUp(username: string, email: string, password: string) {
+  signUp(username: string, email: string, password: string, imageUrl: string) {
     return this.http.post<ApiUser>(this.usersUrl, {
       username,
       email,
       password,
-      image_url: DEFAULT_AVATAR,
+      image_url: imageUrl ? imageUrl: DEFAULT_AVATAR
     });
   }
 
