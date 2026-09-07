@@ -14,6 +14,14 @@
       </div>
     </div>
 
-    <app-view-review></app-view-review>
+    @defer (on viewport) {
+      <app-view-review></app-view-review>
+    } @placeholder (minimum 1s){
+      <h2>Customer Reviews</h2>
+    } @loading (minimum 1s; after 200ms) {
+      <p>Loading reviews...</p>
+    } @error {
+      <p>Failed to load reviews</p>
+    }
   }
 </div>
