@@ -14,14 +14,14 @@
       </div>
     </div>
 
-    @defer (on viewport) {
+    @defer (on hover) {
       <app-view-review></app-view-review>
     } @placeholder (minimum 1s){
-      <h2>Customer Reviews</h2>
+      <h2 class="reviews-placeholder-title">Customer Reviews</h2>
     } @loading (minimum 1s; after 200ms) {
-      <p>Loading reviews...</p>
+      <p class="reviews-placeholder-title">Loading reviews...</p>
     } @error {
-      <p>Failed to load reviews</p>
+      <p class="reviews-placeholder-title">Failed to load reviews</p>
     }
   }
 </div>

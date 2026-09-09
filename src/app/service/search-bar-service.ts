@@ -15,7 +15,6 @@ export class SearchBarService {
   }
 
   search(searchTerm: string) {
-    // perform Search
     this.searchTerm.set(searchTerm);
     this.overlayOpen.set(false);
     this.addToRecentSearches(searchTerm);

@@ -36,7 +36,7 @@ export class SignUpDialog {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-    imageUrl: ['']
+    imageUrl: ['',[ Validators.required]]
   })
 
   signUp() {
@@ -48,7 +48,7 @@ export class SignUpDialog {
 
     const {name, email, password, imageUrl} = this.signUpForm.value;
 
-    this.store.signUp({ name, email, password, dialogId: this.dialogRef.id, checkout: this.data?.checkout } as SignUpParams)
+    this.store.signUp({ name, email, password, imageUrl, dialogId: this.dialogRef.id, checkout: this.data?.checkout } as SignUpParams)
   }
 
   openSignInDialog() {

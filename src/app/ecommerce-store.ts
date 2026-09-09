@@ -234,7 +234,56 @@ export const EcommerceStore = signalStore(
       patchState(store, { productReviews: reviews });
     };
 
+
+    //
+    const syncGuestData = async () => {
+      const guestCart = [...store.cartItems()];
+      const guestWishlist = [...store.wishlistItems()];
+
+      // Get existing server cart
+      const serverCart = await firstValueFrom(
+        cartService.getItems()
+      );
+
+      for (const guestItem of guestCart) {
+        const serverItem = serverCart.find(
+          item => item.product.id === guestItem.product.id
+        );
+
+        const finalQuantity =
+          (serverItem?.quantity ?? 0) + guestItem.quantity;
+
+        await firstValueFrom(
+          cartService.update(
+            guestItem.product.id,
+            finalQuantity
+          )
+        );
+      }
+
+      // Wishlist is just a set of products
+      for (const product of guestWishlist) {
+        try {
+          await firstValueFrom(
+            wishlistService.add(product.id)
+          );
+        } catch (error) {
+          toaster.error(apiMessage(error, 'Unable to update cart'));
+          await refreshCart();
+        }
+      }
+
+      // Server becomes the source of truth
+      await Promise.all([
+        refreshCart(),
+        refreshWishlist()
+      ]);
+    };
+
+    //
+
     return {
+      
       setCategory: signalMethod<string>((category: string) => {
         patchState(store, { category });
       }),
@@ -413,44 +462,142 @@ export const EcommerceStore = signalStore(
         }
       },
 
+      // async signIn({ email, password, checkout, dialogId }: SignInParams) {
+      //   patchState(store, { loading: true });
+      //   try {
+      //     await firstValueFrom(authService.signIn(email, password));
+      //     const user = await firstValueFrom(authService.getMe());
+      //     patchState(store, { user: mapApiUser(user), loading: false });
+      //     await Promise.all([refreshCart(), refreshWishlist()]);
+      //     matDialog.getDialogById(dialogId)?.close();
+      //     if (checkout) {
+      //       router.navigate(['/checkout']);
+      //     }
+      //   } catch (error) {
+      //     patchState(store, { loading: false });
+      //     toaster.error(apiMessage(error, 'Unable to sign in'));
+      //   }
+      // },
+
       async signIn({ email, password, checkout, dialogId }: SignInParams) {
         patchState(store, { loading: true });
+
         try {
-          await firstValueFrom(authService.signIn(email, password));
-          const user = await firstValueFrom(authService.getMe());
-          patchState(store, { user: mapApiUser(user), loading: false });
-          await Promise.all([refreshCart(), refreshWishlist()]);
+          await firstValueFrom(
+            authService.signIn(email, password)
+          );
+
+          const user = await firstValueFrom(
+            authService.getMe()
+          );
+
+          patchState(store, {
+            user: mapApiUser(user)
+          });
+
+          await syncGuestData();
+
+          patchState(store, {
+            loading: false
+          });
+
           matDialog.getDialogById(dialogId)?.close();
+
           if (checkout) {
             router.navigate(['/checkout']);
           }
+
         } catch (error) {
           patchState(store, { loading: false });
-          toaster.error(apiMessage(error, 'Unable to sign in'));
+
+          toaster.error(
+            apiMessage(error, 'Unable to sign in')
+          );
         }
       },
+
+      //
 
       signOut() {
         authService.clearToken();
         patchState(store, { user: undefined, cartItems: [], wishlistItems: [] });
       },
 
-      async signUp({ email, password, name, imageUrl, checkout, dialogId }: SignUpParams) {
+      // async signUp({ email, password, name, imageUrl, checkout, dialogId }: SignUpParams) {
+      //   patchState(store, { loading: true });
+      //   try {
+      //     await firstValueFrom(authService.signUp(name, email, password, imageUrl));
+      //     await firstValueFrom(authService.signIn(email, password));
+      //     const user = await firstValueFrom(authService.getMe());
+      //     patchState(store, { user: mapApiUser(user), loading: false });
+      //     matDialog.getDialogById(dialogId)?.close();
+      //     if (checkout) {
+      //       router.navigate(['/checkout']);
+      //     }
+      //   } catch (error) {
+      //     patchState(store, { loading: false })  ;
+      //     toaster.error(apiMessage(error, 'Unable to create account'));
+      //   }
+      // },
+
+      async signUp({
+        email,
+        password,
+        name,
+        imageUrl,
+        checkout,
+        dialogId
+      }: SignUpParams) {
         patchState(store, { loading: true });
+
         try {
-          await firstValueFrom(authService.signUp(name, email, password, imageUrl));
-          await firstValueFrom(authService.signIn(email, password));
-          const user = await firstValueFrom(authService.getMe());
-          patchState(store, { user: mapApiUser(user), loading: false });
+          // 1. Create the account
+          await firstValueFrom(
+            authService.signUp(name, email, password, imageUrl)
+          );
+
+          // 2. Sign in immediately so we get an authenticated session/token
+          await firstValueFrom(
+            authService.signIn(email, password)
+          );
+
+          // 3. Get the authenticated user's information
+          const user = await firstValueFrom(
+            authService.getMe()
+          );
+
+          // 4. Set the user before syncing guest data
+          patchState(store, {
+            user: mapApiUser(user)
+          });
+
+          // 5. Merge guest cart/wishlist into the new account
+          await syncGuestData();
+
+          patchState(store, {
+            loading: false
+          });
+
+          // 6. Close the signup dialog
           matDialog.getDialogById(dialogId)?.close();
+
+          // 7. Continue to checkout if signup happened during checkout
           if (checkout) {
             router.navigate(['/checkout']);
           }
+
         } catch (error) {
-          patchState(store, { loading: false });
-          toaster.error(apiMessage(error, 'Unable to create account'));
+          patchState(store, {
+            loading: false
+          });
+
+          toaster.error(
+            apiMessage(error, 'Unable to sign up')
+          );
         }
       },
+
+      //
 
       showWriteReview() {
         patchState(store, { writeReview: true });
